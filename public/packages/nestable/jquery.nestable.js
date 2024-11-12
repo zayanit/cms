@@ -63,7 +63,7 @@
 
             list.el.data('nestable-group', this.options.group);
 
-            list.placeEl = $('<div class="' + list.options.placeClass + '"/>');
+            list.placeEl = $('<div/>').addClass(list.options.placeClass);
 
             $.each(this.el.find(list.options.itemNodeName), function(k, el) {
                 list.setParent($(el));
