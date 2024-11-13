@@ -2,6 +2,7 @@
  * Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - http://dbushell.com/
  * Dual-licensed under the BSD or MIT licenses
  */
+import DOMPurify from 'dompurify';
 ;(function($, window, document, undefined)
 {
     var hasTouch = 'ontouchstart' in document;
@@ -447,7 +448,7 @@
                     this.unsetParent(parent.parent());
                 }
                 if (!this.dragRootEl.find(opt.itemNodeName).length) {
-                    this.dragRootEl.append('<div class="' + opt.emptyClass + '"/>');
+                    this.dragRootEl.append('<div class="' + DOMPurify.sanitize(opt.emptyClass) + '"/>');
                 }
                 // parent root list has changed
                 if (isNewRoot) {
