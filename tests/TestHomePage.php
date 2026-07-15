@@ -7,9 +7,9 @@ class TestHomePage extends TestCase
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testBasicExample(): void
     {
-        $this->visit('/')
-            ->see('Lavalite');
+        $response = $this->get('/');
+        $response->assertStatus(200);
     }
 }

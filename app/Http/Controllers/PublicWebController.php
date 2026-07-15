@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Page;
-
 class PublicWebController extends Controller
 {
     /**
@@ -26,6 +24,6 @@ class PublicWebController extends Controller
     {
         $this->theme->layout('home');
 
-        return $this->theme->of('public::home', compact('page'))->render();
+        return $this->theme->of('public::home')->render();
     }
 }
