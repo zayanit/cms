@@ -5,21 +5,16 @@
     "license": "MIT",
     "type": "cms",
     "require": {
-        "php": ">=5.5.9",
-        "laravel/framework": "6.20.45",
-        "lavalite/framework": "1.2.*",
-        "lavalite/page": "4.1.*",
-        "lavalite/settings": "4.1.*",
-        "lavalite/task": "4.1.*",
-        "lavalite/message": "4.1.*",
-        "lavalite/calendar": "4.1.*"
+        "php": ">=7.2.5",
+        "laravel/framework": "^7.30",
+        "lavalite/framework": "^7.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
-        "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.6",
+        "symfony/css-selector": "^4.4|^5.4|^6.4",
+        "symfony/dom-crawler": "^4.4|^5.4|^6.4"
     },
     "autoload": {
         "classmap": [

@@ -38,5 +38,5 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('client/password', 'ClientWebController@getPassword');
     Route::post('client/password', 'ClientWebController@postPassword');
 
-    Route::auth();
+    Auth::routes();
 });
