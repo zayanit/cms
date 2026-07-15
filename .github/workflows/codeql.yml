@@ -1,15 +1,4 @@
-# For most projects, this workflow file will not need changing; you simply need
-# to commit it to your repository.
-#
-# You may wish to alter this file to override the set of languages analyzed,
-# or to provide custom queries or build logic.
-#
-# ******** NOTE ********
-# We have attempted to detect the languages in your repository. Please check
-# the `language` matrix defined below to confirm you have the correct set of
-# supported CodeQL languages.
-#
-name: "CodeQL Advanced"
+name: CodeQL
 
 on:
   push:
@@ -17,69 +6,43 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '28 8 * * 1'
+    - cron: "28 8 * * 1"
+
+permissions:
+  security-events: write
+  packages: read
+  actions: read
+  contents: read
 
 jobs:
   analyze:
-    name: Analyze (${{ matrix.language }})
-    # Runner size impacts CodeQL analysis time. To learn more, please see:
-    #   - https://gh.io/recommended-hardware-resources-for-running-codeql
-    #   - https://gh.io/supported-runners-and-hardware-resources
-    #   - https://gh.io/using-larger-runners (GitHub.com only)
-    # Consider using larger runners or machines with greater resources for possible analysis time improvements.
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    permissions:
-      # required for all workflows
-      security-events: write
+    name: Analyze JavaScript
+    runs-on: ubuntu-latest
 
-      # required to fetch internal or private CodeQL packs
-      packages: read
-
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
-
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-        - language: javascript-typescript
-          build-mode: none
-        # CodeQL supports the following values keywords for 'language': 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
-        # Use `c-cpp` to analyze code written in C, C++ or both
-        # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
-        # Use 'javascript-typescript' to analyze code written in JavaScript, TypeScript or both
-        # To learn more about changing the languages that are analyzed or customizing the build mode for your analysis,
-        # see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning.
-        # If you are analyzing a compiled language, you can modify the 'build-mode' for that language to customize how
-        # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
-        # Exclude generated vendor bundles from analysis.
-        # These files are built from npm packages (see scripts/build-vendor.js and
-        # package.json). The npm packages are at their latest available versions.
-        # Remaining patterns in Bootstrap 3.4.1 (EOL), toastr 2.1.4, iCheck 1.0.2,
-        # pickadate 3.6.4 (all abandoned) are inherent library design choices that
-        # cannot be patched without breaking the admin UI.
-        # First-party code in public/js/admin.js and public/js/public.js is
-        # analyzed directly by CodeQL (no vendor-bundle exclusion applies there).
-        config: |
-          paths-ignore:
-            - "public/js/vendor_admin.js"
-            - "public/js/vendor_public.js"
-            - "public/css/vendor_admin.css"
-            - "public/css/vendor_public.css"
-            - "node_modules/**"
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          config-file: ./.github/codeql/codeql-config.yml
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
-        category: "/language:${{matrix.language}}"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run JavaScript security tests
+        run: npm test
+
+      - name: Build frontend assets
+        run: npm run build
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v3
