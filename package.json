@@ -2,10 +2,11 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build-vendor.js",
-    "prebuild": "node -e \"require('fs').mkdirSync('public/css', {recursive:true}); require('fs').mkdirSync('public/js', {recursive:true});\""
+    "prebuild": "node -e \"require('fs').mkdirSync('public/css', {recursive:true}); require('fs').mkdirSync('public/js', {recursive:true});\"",
+    "test": "node scripts/test-js-security.js"
   },
   "dependencies": {
-    "bootstrap": "3.4.1",
+    "bootstrap": "4.6.2",
     "datatables.net": "1.13.8",
     "datatables.net-bs": "1.13.8",
     "dompurify": "^3.2.0",
@@ -14,13 +15,14 @@
     "icheck": "1.0.2",
     "jquery": "^3.7.1",
     "jquery-ui": "^1.14.2",
-    "timeago": "1.6.7",
     "jquery-validation": "^1.22.1",
     "moment": "2.30.1",
     "pickadate": "3.6.4",
+    "popper.js": "1.16.1",
     "sortablejs": "^1.15.7",
     "summernote": "0.9.1",
     "sweetalert": "2.1.2",
+    "timeago": "1.6.7",
     "toastr": "2.1.4"
   }
 }

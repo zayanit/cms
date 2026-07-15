@@ -46,6 +46,7 @@ function write(outPath, content) {
 // ── vendor_admin.js ──────────────────────────────────────────────────────────
 const adminJs = [
     'jquery-ui/dist/jquery-ui.js',
+    'popper.js/dist/umd/popper.js',
     'bootstrap/dist/js/bootstrap.js',
     'datatables.net/js/jquery.dataTables.js',
     'datatables.net-bs/js/dataTables.bootstrap.js',
@@ -66,6 +67,7 @@ const adminJs = [
 
 // ── vendor_public.js ─────────────────────────────────────────────────────────
 const publicJs = [
+    'popper.js/dist/umd/popper.js',
     'bootstrap/dist/js/bootstrap.js',
     'icheck/icheck.js',
     'sweetalert/dist/sweetalert.min.js',

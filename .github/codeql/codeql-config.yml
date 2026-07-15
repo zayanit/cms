@@ -1,0 +1,10 @@
+name: CodeQL configuration
+
+paths-ignore:
+  # Generated third-party bundles built from npm dependencies by scripts/build-vendor.js.
+  # First-party JavaScript remains scanned in public/js/admin.js and public/js/public.js.
+  - public/js/vendor_admin.js
+  - public/js/vendor_public.js
+  - public/css/vendor_admin.css
+  - public/css/vendor_public.css
+  - node_modules/**

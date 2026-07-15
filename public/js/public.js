@@ -179,6 +179,10 @@ function sendFile(file, url, editor) {
 }
 */
 
+function escapeHtml(value) {
+    return $('<div/>').text(value == null ? '' : String(value)).html();
+}
+
 var app = {
 
     'create' : function(forms, tag, datatable) {
@@ -327,38 +331,39 @@ var app = {
             return true;
         }
 
-        var msgTyp;
+        var msgType;
         var msgTitle;
         var msgText = '';
+        var response;
 
         if (info.status == 201) {
-            msgTitle   = 'Success';
+            msgTitle   = escapeHtml('Success');
             msgType    = 'success';
             response   = jQuery.parseJSON(info.responseText);
-            msgText    = response.message;
+            msgText    = escapeHtml(response.message);
         }else if (info.status == 422) {
             msgType    = 'warning';
-            msgTitle   = info.statusText;
+            msgTitle   = escapeHtml(info.statusText);
             response   = jQuery.parseJSON(info.responseText);
             $.each(response, function(key, val){
-                msgText    += val + "<br>";
+                msgText    += escapeHtml(val) + "<br>";
             });
         }else if (info.status >= 100 && info.status <= 199){
-            msgTitle   = 'Info';
+            msgTitle   = escapeHtml('Info');
             msgType    = 'info';
-            msgText    = info.statusText;
+            msgText    = escapeHtml(info.statusText);
         }else if (info.status >= 202 && info.status <= 299){
-            msgTitle   = 'Success';
+            msgTitle   = escapeHtml('Success');
             msgType    = 'success';
-            msgText    = info.statusText;
+            msgText    = escapeHtml(info.statusText);
         }else if (info.status >= 400 && info.status <= 499){
-            msgTitle   = 'Warning';
+            msgTitle   = escapeHtml('Warning');
             msgType    = 'warning';
-            msgText    = info.statusText;
+            msgText    = escapeHtml(info.statusText);
         }else if (info.status >= 500 && info.status <= 599){
             msgType    = 'error';
-            msgTitle   = 'Error';
-            msgText    = info.statusText;
+            msgTitle   = escapeHtml('Error');
+            msgText    = escapeHtml(info.statusText);
         }
 
         if (msgType != undefined)
@@ -367,4 +372,3 @@ var app = {
         return true;
     }
 }
-
