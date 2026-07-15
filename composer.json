@@ -5,16 +5,17 @@
     "license": "MIT",
     "type": "cms",
     "require": {
-        "php": ">=7.2.5",
-        "laravel/framework": "^7.30",
-        "lavalite/framework": "^7.0"
+        "php": "^8.2",
+        "laravel/framework": "^12.61.1",
+        "lavalite/framework": "^12.0",
+        "laravel/ui": "^4.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "^1.4",
-        "phpunit/phpunit": "^9.6",
-        "symfony/css-selector": "^4.4|^5.4|^6.4",
-        "symfony/dom-crawler": "^4.4|^5.4|^6.4"
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^10.3",
+        "symfony/css-selector": "^7.2",
+        "symfony/dom-crawler": "^7.2"
     },
     "autoload": {
         "classmap": [
@@ -24,11 +25,14 @@
             "App\\": "app/"
         },
         "files": [
+            "app/Stubs/LitepieController.php",
+            "app/Stubs/LitepieUserManager.php"
         ]
     },
     "autoload-dev": {
         "classmap": [
-            "tests/TestCase.php"
+            "tests/TestCase.php",
+            "tests/TestHomePage.php"
         ]
     },
     "scripts": {

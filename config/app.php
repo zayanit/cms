@@ -147,11 +147,13 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Laravel\Ui\UiServiceProvider::class,
 
         /*
          * Lavalite Framework Service Providers...
          */
 
+        Litepie\Actions\ActionsServiceProvider::class,
         Litepie\Form\FormServiceProvider::class,
         Litepie\Theme\ThemeServiceProvider::class,
         Litepie\Trans\TransServiceProvider::class,
@@ -159,15 +161,6 @@ return [
         Litepie\Hashids\HashidsServiceProvider::class,
         Litepie\User\UserServiceProvider::class,
         Litepie\Menu\MenuServiceProvider::class,
-
-        /*
-         * Lavalite package Service Providers...
-         */
-        Lavalite\Page\Providers\PageServiceProvider::class,
-        Lavalite\Message\Providers\MessageServiceProvider::class,
-        Lavalite\Calendar\Providers\CalendarServiceProvider::class,
-        Lavalite\Task\Providers\TaskServiceProvider::class,
-        Lavalite\Settings\Providers\SettingsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -223,10 +216,8 @@ return [
         'Validator'        => Illuminate\Support\Facades\Validator::class,
         'View'             => Illuminate\Support\Facades\View::class,
 
-        'AuthenticateUser' => App\AuthenticateUser::class,
         'Socialite'        => Laravel\Socialite\Facades\Socialite::class,
 
-        'Captcha'          => Litepie\Support\Facades\Captcha::class,
         'Form'             => Litepie\Support\Facades\Form::class,
         'Filer'            => Litepie\Support\Facades\Filer::class,
         'Hashids'          => Litepie\Support\Facades\Hashids::class,
@@ -235,12 +226,6 @@ return [
         'Trans'            => Litepie\Support\Facades\Trans::class,
         'User'             => Litepie\Support\Facades\User::class,
 
-        'Page'             => Lavalite\Page\Facades\Page::class,
-        'Settings'         => Lavalite\Settings\Facades\Settings::class,
-        'Task'             => Lavalite\Task\Facades\Task::class,
-        'Calendar'         => Lavalite\Calendar\Facades\Calendar::class,
-        'Message'          => Lavalite\Message\Facades\Message::class,
-        'Package'          => Lavalite\Package\Facades\Package::class,
     ],
 
 ];

@@ -309,4 +309,6 @@ return [
     //
     'hideDefaultLocaleInURL'  => true,
 
+    'localesMapping'          => [],
+
 ];

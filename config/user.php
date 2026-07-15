@@ -145,6 +145,7 @@ return [
             'permissions' => 'array',
         ],
         'perPage'      => '20',
+        'actions'      => [],
     ],
 
     /*
